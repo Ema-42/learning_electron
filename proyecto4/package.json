@@ -1,0 +1,14 @@
+{
+  "name": "proyecto4",
+  "version": "0.0.1",
+  "description": "app de enlaces",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^24.0.0"
+  }
+}
