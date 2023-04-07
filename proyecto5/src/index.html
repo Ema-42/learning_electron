@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./ui/app.css">
+    <title>Node CRUD MONGO</title>
+</head>
+<body>
+
+    <h1>Electron Mongo CRUD</h1>
+
+    <form  class="taskForm">
+
+        <input class="input-name" type="text" id="taskName" placeholder="Task name" autofocus>
+        <input class="input-description"" id="taskDescription"  rows="3" placeholder="Task's description"></input>
+        <br>
+        <button class="submit" type="submit">Save</button>
+        <h4 id="cantidad" class="cantidad">Cantidad</h4>
+        <ul class="list" id="taskList">
+
+        </ul>
+    </form>
+
+    <script src="ui/app.js"></script>
+</body>
+
+</html>
