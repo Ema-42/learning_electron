@@ -1,0 +1,36 @@
+body{
+    margin: 10px;
+
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  tr:hover {
+    background-color: #dfdcdc;
+  }
+  td {
+    border: 1px solid #c0c0c0;
+  }
+
+  .cabecera{
+    background-color: rgb(49, 67, 146);
+    color: white;
+  }
+  .cabecera:hover{
+    background-color: rgb(41, 55, 117);
+  }
+
+  tr:has(td#CPU,#RAM,#SISTEMA,#RED,#OTROS-DATOS,#EQUIPO,#ALMACENAMIENTO) {
+    background-color: rgb(96, 184, 154);
+    font-weight: bold;
+  }
+
+  tr:has(td#CPU,#RAM,#SISTEMA,#RED,#OTROS-DATOS,#EQUIPO,#ALMACENAMIENTO):hover {
+    background-color: rgb(82, 153, 129);
+  }
