@@ -6,7 +6,7 @@ let appIcon = null
 
 app.whenReady().then(() => {
     mainWindow = new BrowserWindow({
-        show:false,
+        // show:false,
         webPreferences:{
             nodeIntegration:true,
             contextIsolation: false
@@ -15,7 +15,7 @@ app.whenReady().then(() => {
         width:600,
         roundedCorners:true,
 
-        skipTaskbar: true,
+        // skipTaskbar: true,
         minimizable: false,
         maximizable: false,
         fullscreenable: false,
@@ -24,22 +24,22 @@ app.whenReady().then(() => {
 
     mainWindow.loadFile(__dirname+'/view/index.html')
 
-    mainWindow.hide();
+    // mainWindow.hide();
 
     // Crea un ícono en la bandeja del sistema
     appIcon = new Tray(path.join(__dirname, 'icon', 'icon.png'));
 
     //abrir app con click
     appIcon.on('click', () => {
-        // Get the bounds of the tray icon
-        const trayBounds = appIcon.getBounds();
-        // Get the size of the window
-        const windowBounds = mainWindow.getBounds();
-        // Calculate the x and y positions for the window
-        const x = Math.round(trayBounds.x + (trayBounds.width / 2) - (windowBounds.width / 2));
-        const y = Math.round(trayBounds.y + trayBounds.height + 2);
-        // Set the position of the window
-        mainWindow.setPosition(x, y, false);
+        // // Get the bounds of the tray icon
+        // const trayBounds = appIcon.getBounds();
+        // // Get the size of the window
+        // const windowBounds = mainWindow.getBounds();
+        // // Calculate the x and y positions for the window
+        // const x = Math.round(trayBounds.x + (trayBounds.width / 2) - (windowBounds.width / 2));
+        // const y = Math.round(trayBounds.y + trayBounds.height + 2);
+        // // Set the position of the window
+        // mainWindow.setPosition(x, y, false);
         mainWindow.show();
       });
 
@@ -63,7 +63,7 @@ app.whenReady().then(() => {
     appIcon.setContextMenu(contextMenu);
 
     // Establece la propiedad skipTaskbar en true para que el ícono no se muestre en la barra de tareas
-    mainWindow.setSkipTaskbar(true);
+    // mainWindow.setSkipTaskbar(true);
 
 })
 
