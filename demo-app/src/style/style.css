@@ -1,41 +1,85 @@
 body{
-    margin: 10px;
+    background-color:#1f1e23;
+    color: rgb(239, 239, 239);
+    margin: 0px;
+}
 
+/* Estilos para WebKit (Google Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 0; /* Ancho de la barra de desplazamiento */
+}
+/* Estilos para Mozilla Firefox */
+::-moz-scrollbar {
+  width: 0; /* Ancho de la barra de desplazamiento */
+}
+
+
+*{
+  font-family: "Arial", sans-serif;
+  font-size: 13px;
+}
+
+/* tabla */
+table, th, td {
+  border: none !important;
 }
 
 .table {
     border-collapse: collapse;
     width: 100%;
   }
+
+tr:nth-child(even) {
+  background-color: #2b2a30; /* Color de fondo para filas pares */
+}
+
   th, td {
     text-align: left;
     padding: 8px;
   }
   tr:hover {
-    background-color: #dfdcdc;
+    background-color: #79e59a;
+    color: #1f1e23;
   }
   td {
     border: 1px solid #c0c0c0;
   }
 
-  .cabecera{
-    background-color: rgb(49, 67, 146);
-    color: white;
-  }
-  .cabecera:hover{
-    background-color: rgb(41, 55, 117);
-  }
-
   tr:has(td#CPU,#RAM,#SISTEMA,#RED,#OTROS-DATOS,#EQUIPO,#ALMACENAMIENTO,#BATERIA,#PANTALLA) {
-    background-color: rgb(96, 184, 154);
     font-weight: bold;
-  }
+    background-color: #79e59a;
+    color: #1f1e23;
 
-  tr:has(td#CPU,#RAM,#SISTEMA,#RED,#OTROS-DATOS,#EQUIPO,#ALMACENAMIENTO,#BATERIA),#PANTALLA:hover {
-    background-color: rgb(82, 153, 129);
   }
 
   tr:has(td#ESCRITORIO,#LAPTOP){
-    background-color: rgb(154, 110, 198);
+    background-color: #2f89fc;
     font-weight: bold;
   }
+
+  
+/* Estilos  tabs */
+
+.tab {
+  height: 50px;
+  overflow: hidden;
+  background-color: #2b2a30 ;
+}
+
+.tab button {
+  background-color: #1f1e23;
+  border: none;
+  color: #79e59a;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.tabcontent {
+  display: none;
+  padding-top: 10px;
+}
+
+button.active{
+  background-color: #79e59a;
+  color: #1f1e23;
+}

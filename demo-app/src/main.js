@@ -1,28 +1,33 @@
-const {app,BrowserWindow, Tray,Menu} = require('electron');
+const {app,BrowserWindow, Tray,Menu,screen} = require('electron');
 const path = require('path');
 
 let mainWindow = null;
 let appIcon = null
 
 app.whenReady().then(() => {
-    mainWindow = new BrowserWindow({
-        // show:false,
-        webPreferences:{
-            nodeIntegration:true,
-            contextIsolation: false
-        },
-        height:1000,
-        width:600,
-        roundedCorners:true,
+    const { width } = screen.getPrimaryDisplay().workAreaSize;
+    let anchoVentana = Math.floor(width * 0.3); // Calcula el 20% del ancho de la pantalla
 
-        // skipTaskbar: true,
-        minimizable: false,
-        maximizable: false,
-        fullscreenable: false,
-        resizable: false,
+    mainWindow = new BrowserWindow({
+      // show:false,
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false,
+      },
+      height: 1000,
+      width: anchoVentana,
+      roundedCorners: true,
+
+      // skipTaskbar: true,
+      minimizable: false,
+      maximizable: false,
+      fullscreenable: false,
+      resizable: false,
     });
 
     mainWindow.loadFile(__dirname+'/view/index.html')
+    //mostrar u ocultar menu
+    // mainWindow.setMenu(null);
 
     // mainWindow.hide();
 

@@ -25,17 +25,8 @@ const obtenerVelocidadDeNucleos = () =>{
 }
 
 const obtenerTiempoActivo = () =>{
-  return ((os.uptime()/60)).toFixed(0) +' Min. '+ (os.uptime()%60).toFixed(0) + ' Seg.'
+  return ((os.uptime()/60)).toFixed(0) +' Min. '
 };
-
-
-const actualizarDatos = () =>{
-  document.querySelector("#Frecuencia-de-procesadores-logicos").innerHTML =
-    obtenerVelocidadDeNucleos();
-  document.querySelector('#Tiempo-activo').innerHTML = obtenerTiempoActivo();
-  document.querySelector('#Libre').innerHTML = convertirAGb(os.freemem());
-  document.querySelector("#En-uso").innerHTML = convertirAGb(os.totalmem()-os.freemem());
-}
 
 // opcional desde la importacion de systeminfo
 const obtenerInfoCpu = async () =>{
@@ -91,7 +82,7 @@ const obtenerInfoRam = async () =>{
         }
         Capacidad: ${convertirAGb(memLayout[i].size)}
         Tipo: ${memLayout[i].type}
-        Frecuencia: ${memLayout[i].clockSpeed}
+        Frecuencia: ${memLayout[i].clockSpeed} MHz
         Voltaje Máximo: ${memLayout[i].voltageMax + " V"}  |`;
       }
     }
@@ -126,6 +117,7 @@ const obtenerInfoGraficos = async () => {
     for (let i = 0; i < displays.length; i++) {
       infoPantalla += `   Pantalla ${i + 1}:
       Frecuencia: ${displays[i].currentRefreshRate} Hz
+      Conexión: ${displays[i].connection} 
       Resolución: ${displays[i].resolutionX + " x " + displays[i].resolutionY}  |`;
     }
     return {displays,infoPantalla,infoGPU};
@@ -134,17 +126,47 @@ const obtenerInfoGraficos = async () => {
   }
 };
 
-// continuar probrando metodos de systeminfo de npm 7. Operating System
+const obtenerInfoDisco = async () => {
+  try {
+    let disks = await systeminfo.diskLayout();
+    let infoDisco = "";
+    for (let i = 0; i < disks.length; i++) {
+      infoDisco += ` --DISCO ${i+1}--   
+        Nombre: ${disks[i].name}
+        Capacidad: ${(disks[i].size / Math.pow(1024, 3)).toFixed(2)} GB  
+        Fabricante: ${disks[i].vendor}
+        Interfaz: ${disks[i].interfaceType}
+        Tipo: ${disks[i].type}  |`;
+    }
+    return {infoDisco};
+  } catch (error) {
+    console.error("error funcion InfoDisco: ", error);
+  }
+};
+
+// continuar probrando metodos de systeminfo de getStaticData
 
 let info = systeminfo
-  .graphics()
+  .getStaticData()
   .then((data) => {
-    console.log("data: ", data);
+    console.log("getStaticData: ", data);
   })
   .catch((err) => {
     console.log(err);
   });
 
+  const actualizarDatos = async () => {
+    const bateriaInfo = await obtenerInfoBateria();
+    document.querySelector("#Frecuencia-de-procesadores-logicos").innerHTML =
+      obtenerVelocidadDeNucleos();
+    document.querySelector("#Tiempo-activo").innerHTML = obtenerTiempoActivo();
+    document.querySelector("#Libre").innerHTML = convertirAGb(os.freemem());
+    document.querySelector("#Porcentaje-de-bateria").innerHTML =
+      bateriaInfo.percent + " %";
+    document.querySelector("#En-uso").innerHTML = convertirAGb(
+      os.totalmem() - os.freemem()
+    );
+  };
 
 const Datos = async ()=>{
   const cpuInfo = await obtenerInfoCpu();
@@ -154,7 +176,8 @@ const Datos = async ()=>{
   const ramInfo = await obtenerInfoRam();
   const bateriaInfo = await obtenerInfoBateria();
   const graficosInfo = await obtenerInfoGraficos();
-
+  const discoInfo = await obtenerInfoDisco();
+  
   datos = [
     ["ESCRITORIO", ""],
     ["EQUIPO", ""],
@@ -203,7 +226,7 @@ const Datos = async ()=>{
     ["IP publica", "pendiente"],
     ["Direccion MAC", redInfo[1].mac],
     ["ALMACENAMIENTO", ""],
-    ["Disco", "pendiente"],
+    ["Disco", discoInfo.infoDisco],
     ["OTROS DATOS", ""],
     ["Tiempo activo", obtenerTiempoActivo()],
     ["LAPTOP", ""],

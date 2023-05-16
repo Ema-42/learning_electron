@@ -10,16 +10,28 @@
 </head>
 
 <body>
-    <table class="table" id="tabla-de-datos">
-      <thead>
-        <tr class="cabecera" id="cabecera-tabla">
-          <td><strong>Información</strong></td>
-          <td><strong>Valor</strong></td>
-        </tr>
-      </thead>
-    </table>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Tab1')">Especificaciones</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab2')">Notificaciones</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab3')">Usuario</button>
+    </div>
 
+    <div id="Tab1" class="tabcontent">
+      <table class="table" id="tabla-de-datos">
+      </table>
+    </div>
 
-      <script src="../renderer.js"></script>
+    <div id="Tab2" class="tabcontent">
+        <h3>Pestaña 2</h3>
+        <p>Contenido de la pestaña 2.</p>
+    </div>
+
+    <div id="Tab3" class="tabcontent">
+        <h3>Pestaña 3</h3>
+        <p>Contenido de la pestaña 3.</p>
+    </div>
+
+    <script src="../renderer.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
