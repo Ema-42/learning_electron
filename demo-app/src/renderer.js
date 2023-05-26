@@ -177,7 +177,7 @@ const Datos = async ()=>{
   const bateriaInfo = await obtenerInfoBateria();
   const graficosInfo = await obtenerInfoGraficos();
   const discoInfo = await obtenerInfoDisco();
-  
+
   datos = [
     ["ESCRITORIO", ""],
     ["EQUIPO", ""],
@@ -198,7 +198,7 @@ const Datos = async ()=>{
     ["Distribución", sistemaInfo.distro],
     ["Versión específica", sistemaInfo.release],
     ["Usuario actual", os.userInfo().username],
-    ["Nombre del Equipo", os.hostname],
+    ["Nombre del Equipo", os.hostname()],
     ["PANTALLA", ""],
     ["Cantidad de monitores", graficosInfo.displays.length],
     ["Información monitores", graficosInfo.infoPantalla],
@@ -213,7 +213,7 @@ const Datos = async ()=>{
     ["CPU", ""],
     ["Fabricante CPU", cpuInfo.manufacturer],
     ["Frecuencia CPU", cpuInfo.speed + " GHz"],
-    ["Arquitectura de CPU", os.arch],
+    ["Arquitectura de CPU", os.arch()],
     ["Arquitectura y Tipo", os.machine()],
     ["Modelo de CPU", os.cpus()[0].model],
     ["Version del kernel del equipo", os.version()],
@@ -239,7 +239,6 @@ const Datos = async ()=>{
   return datos
 }
 
-
 const tablaDeDatos = document.querySelector('#tabla-de-datos')
 
 Datos().then((datos) => {
@@ -258,8 +257,3 @@ Datos().then((datos) => {
   console.log('Algo salio mal :');
   console.log(err);
 });
-
-
-
-
-

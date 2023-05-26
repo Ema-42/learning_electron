@@ -12,6 +12,7 @@
   "dependencies": {
     "electron": "^24.2.0",
     "primevue": "^3.28.0",
+    "sqlite3": "^5.1.6",
     "systeminformation": "^5.17.12",
     "vue": "^3.2.47"
   }

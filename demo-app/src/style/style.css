@@ -38,8 +38,8 @@ tr:nth-child(even) {
     padding: 8px;
   }
   tr:hover {
-    background-color: #79e59a;
-    color: #1f1e23;
+    background-color: #323136;
+    color: rgb(239, 239, 239);
   }
   td {
     border: 1px solid #c0c0c0;
